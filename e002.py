@@ -8,5 +8,6 @@ def euler2(f=[1,2],x=4000000):
         evens += yf if yf % 2 == 0 else 0
     return evens
 
+print(euler2())
 
 bm.time("euler2", lambda: euler2() )
