@@ -40,8 +40,6 @@ def getrad(n):
 def getrads(n):
     for i in range(1,n):
         dpfs = get_pfs_distinct(i)
-        #if any(pf >= i for pf in dpfs):
-            #continue
         p = prod(dpfs) 
         if(p <= i): 
             yield i,p
@@ -55,7 +53,7 @@ def getbase3(n):
             yield (a,b,a+b)
             b += 2 if a_iseven else 1
         a+=1
-        if(a%1000==0): print(a)    
+        #if(a%1000==0): print(a)    
 
 def israd(t):
     a,b,c = t[0],t[1],t[2]

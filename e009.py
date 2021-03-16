@@ -4,31 +4,33 @@
 #Find the product abc.
 import benchmark as bm
 
-# awfully inefficient
-def triplet(n=1000):
-    r = range(1,n+1)
-    #return next((a,b,c) for a in r for b in r for c in r if a<b and c>b and a+b+c == n and (a**2 + b**2 == c**2)  ) 
-    return next( (a,b,c,a*b*c) for a in range(1,n+1)\
-        for b in range(a+1,n+1)\
-            for c in range(b+1,n+1) if a+b+c == n and (a**2 + b**2 == c**2)  ) 
+# ~150ms @ n=1000
+def py_triplet(n=1000):
+    return next((a,b,(n-(a+b)),(a*b*(n-(a+b)))) for a in range(1,n+1) for b in range(a+1,n-a) if b < n//2 and (a**2 + b**2 == ((n-(a+b)))**2)) 
 
-
-def triplet2(n=1000):
-    return next( (a,b,n-(a+b)) for a in range(1,n+1)\
-        for b in range(a+1,n-a-1)\
-            if (a**2 + b**2 == ((n-(a+b)))**2)  ) #a+b+(n-(a+b)) == n and 
-
-def triplet3(n=1000):
-    return next((a,b,n-(a+b)) for a in range(1,n+1) for b in range(a+1,n-a) if b < n//2 and (a**2 + b**2 == ((n-(a+b)))**2)) 
-
-
-print(triplet2(1000))
-print(triplet3(1000))
+print(py_triplet(1000))
 
 #bm.time("t", triplet)
-bm.time("t2", triplet2)
-bm.time("t2", triplet3)
+#bm.time("t2", triplet2)
+bm.time("t3", py_triplet)
+
+
+quit()
 
 #n=10
 #x = ( (a,b,n-(a+b)) for a in range(1,n+1)\
 #        for b in range(a+1,n-a) if b< n//2) #a+b+(n-(a+b)) == n and 
+
+# first attempt - awfully inefficient
+# 12s @ n=1000
+def triplet(n=1000):
+    return next( (a,b,c,a*b*c) for a in range(1,n+1)\
+        for b in range(a+1,n+1)\
+            for c in range(b+1,n+1) if a+b+c == n and (a**2 + b**2 == c**2)  ) 
+
+# revised 
+# ~250ms @ n=1000
+def triplet2(n=1000):
+    return next( (a,b,n-(a+b)) for a in range(1,n+1)\
+        for b in range(a+1,n-a-1)\
+            if (a**2 + b**2 == ((n-(a+b)))**2)  ) #a+b+(n-(a+b)) == n and 
