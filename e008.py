@@ -15,7 +15,7 @@ bignum = '7316717653133062491922511967442657474235534919493496983520312774506326
 0588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450'
 
 def maxprod(N, digits):
-    return max(prod(int(i) for i in digits[i:i+N]) for i in range(0, len(digits)-N+1))
+    return max(prod(int(i) for i in digits[i:i+N]) for i in range(0, len(digits)-N)) #-N+1?
 
 n = 13
 
