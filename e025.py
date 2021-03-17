@@ -1,3 +1,5 @@
+import benchmark as bm
+
 def euler25(f=[1,1],n=3):
     y = lambda l: l[-1] + l[-2]
     while ( yf:= y(f) ) > 1:
@@ -11,5 +13,4 @@ def euler25(f=[1,1],n=3):
 i = euler25([1,1],1000)
 print(i)
 
-t = timeit.Timer( lambda: euler25() )
-pt(t, "Euler25")
+bm.time("Euler25", euler25)

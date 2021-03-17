@@ -71,3 +71,7 @@ def prime_sieve(n):
                 j+=i
         i+=1
     return [idx+2 for idx, p in enumerate(A) if p==1] # can change to generator
+
+
+def ispalindrome(a,b):
+    return str(a)==str(b)[::-1]
