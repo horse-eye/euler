@@ -13,10 +13,10 @@ def prime_perms():
     isperm = lambda a,b: str(a) in map(''.join, it.permutations(str(b))) # should check c as well
     for a in range(1000,limit-step*2):
         p = sorted(primes.intersection(range(a, limit+1, step))) 
-        if len(p)>2 and isperm(p[0],p[1]): 
+        if len(p)>2 and isperm(p[0],p[1]): #,p[2]
             yield ''.join(str(i) for i in p)
 
 result = list(prime_perms())
 print( result )
 
-quit()
+bm.time("e49", lambda: list(prime_perms()) )

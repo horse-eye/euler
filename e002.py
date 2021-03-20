@@ -1,5 +1,6 @@
-import benchmark as bm
+from benchmark import timed
 
+@timed
 def euler2(f=[1,2],x=4000000):
     y = lambda l: l[-1] + l[-2]
     evens=0
@@ -8,6 +9,5 @@ def euler2(f=[1,2],x=4000000):
         evens += yf if yf % 2 == 0 else 0
     return evens
 
-print(euler2())
-
-bm.time("euler2", lambda: euler2() )
+result = euler2()
+print( result )
