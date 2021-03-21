@@ -1,6 +1,8 @@
 from math import sqrt
 
-primecache = {}
+####################################################
+# DIVISORS
+####################################################
 
 def countdivs(n):    
     sq = int(sqrt(n))
@@ -22,6 +24,11 @@ def get_divisors(n):
     divs.extend( [n//i for i in divs] )
     return divs
 
+####################################################
+# PRIME NUMBERS
+####################################################
+
+primecache = {}
 def isprime(n):
     if n in primecache: 
         return primecache[n]
@@ -51,10 +58,6 @@ def get_primefactors_alt(n):
        primfac.append(n)
     return primfac
 
-def get_primefactors_lib(n):
-    import sympy as symp
-    return symp.primefactors(n)
-
 # get all primes <= n
 def get_all_primes_naive(n):
     return filter(isprime, (n for n in range(n,1,-1)) )    
@@ -72,6 +75,18 @@ def prime_sieve(n):
         i+=1
     return [idx+2 for idx, p in enumerate(A) if p==1] # can change to generator
 
+####################################################
+# STRINGS
+####################################################
 
 def ispalindrome(a,b):
     return str(a)==str(b)[::-1]
+
+def rotations(n):
+    yield n
+    if n < 10:
+        return
+    s = str(n)
+    for _ in range(len(s)-1):
+        s = s[1:]+s[0]
+        yield int(s)     

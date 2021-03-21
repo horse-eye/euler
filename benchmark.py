@@ -13,6 +13,6 @@ def timed(func):
         result = func(*args, **kwargs)
         end = timeit.default_timer()
         exec_time = (end - start)*1000
-        print(func.__name__ + ": %.5f ms (decor)" % exec_time)
+        print(func.__name__ + ": %.5f ms" % exec_time)
         return result
     return wrapper    
