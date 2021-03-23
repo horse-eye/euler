@@ -1,5 +1,5 @@
 import math
-import benchmark as bm
+from benchmark import timed
 
 #y = [n / i for i in r if n%i==0]
 #x = [n/i for i in y]
@@ -19,9 +19,10 @@ def absums():
     abs = list(ab())
     return {a+b for a in abs for b in abs} 
 
+@timed
 def e23():
     sums = absums()
     return sum(r for r in range(1,28123+1) if not r in sums)
 
 print (e23())
-bm.time("e23", lambda: e23())
+
