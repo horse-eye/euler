@@ -1,6 +1,5 @@
-# Python is cheating for this one
-
-nums = [37107287533902102798797998220837590246510135740250,
+nums = [\
+37107287533902102798797998220837590246510135740250,
 46376937677490009712648124896970078050417018260538,
 74324986199524741059474233309513058123726617309629,
 91942213363574161572522430563301811072406154908250,
@@ -101,4 +100,33 @@ nums = [37107287533902102798797998220837590246510135740250,
 20849603980134001723930671666823555245252804609722,
 53503534226472524250874054075591789781264330331690]
 
-print(str(sum(nums))[:10])
+# Work out the first ten digits of the sum of the one-hundred 50-digit numbers.
+
+from benchmark import timed
+
+# The easy way
+@timed
+def pythonic():
+    return str(sum(nums))[:10]
+
+# The hard way
+@timed
+def long_addition(numbers):
+    carry, result = 0, []
+    snums = list(str(n) for n in numbers)
+    
+    for i in range(len(snums[0]), 0, -1):
+        c = sum( int(n[i-1]) for n in snums ) + carry
+        result.append(c % 10) 
+        carry = c//10
+
+    if carry>0:
+        result.append(carry)
+
+    return ''.join(map(str, reversed(result[-9:])))
+
+result = pythonic()
+print(result)
+
+result = long_addition(nums)
+print(result)
