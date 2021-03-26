@@ -3,7 +3,7 @@
 # For example, 2143 is a 4-digit pandigital and is also prime.
 # What is the largest n-digit pandigital prime that exists?
 import math
-import benchmark as bm
+from benchmark import timed
 import itertools as it
 import functools as ft
 
@@ -25,22 +25,12 @@ def pdp2(N):
     num = lambda seq: ft.reduce(lambda total, d: 10 * total + d, seq, 0)
     return next( filter(isprime, (num(seq) for seq in perms)), None )
 
+@timed
 def find_pdp():
-    return next(filter(None, (pdp2(n) for n in range(9,1,-1))))
+    return next(filter(None, (pdp(n) for n in range(9,1,-1))))
   
 
 x = find_pdp()
 print(x)
 
-bm.time( "e41-8", lambda: pdp(8) )
-bm.time( "e41-pdp2-8", lambda: pdp2(8) )
-bm.time( "e41-8", lambda: pdp(8) )
-bm.time( "e41-pdp2-8", lambda: pdp2(8) )
-
-quit()
-
-bm.time( "e41-9", lambda: pdp(9) )
-bm.time( "e41-8", lambda: pdp(8) )
-bm.time( "e41-7", lambda: pdp(7) )
-bm.time( "e41-find", lambda: find_pdp() )
 
