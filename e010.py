@@ -10,7 +10,7 @@ def sieve_sum(limit=2000000):
     i, sq = 2, int(sqrt(limit))+1
     while (i<sq):
         if A[i-2]:
-            j = i**2
+            j = i*i
             while (j<=limit):
                 A[j-2]=0
                 j+=i
