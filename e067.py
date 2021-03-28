@@ -10,6 +10,7 @@ def max_path_fold(tri):
     
     return tri[0][0]   
 
+
 with open('resources/e067-triangle.txt') as f:
     content = f.read().splitlines()    
 
