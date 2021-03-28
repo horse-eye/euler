@@ -68,7 +68,7 @@ def prime_sieve(n):
     i, sq = 2, int(sqrt(n))+1
     while (i<sq):
         if A[i-2]:
-            j = i**2
+            j = i*i
             while (j<=n):
                 A[j-2]=0
                 j+=i
