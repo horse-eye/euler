@@ -11,10 +11,7 @@ def spiral(N):
         NW += 6 + step
         NE += 8 + step
         
-        yield SE
-        yield SW
-        yield NW
-        yield NE
+        yield from [SE,SW,NW,NE]
         #print(SE,SW,NW,NE)
 
 result = sum(spiral(1001))
