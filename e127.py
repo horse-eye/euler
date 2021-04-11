@@ -16,10 +16,14 @@ It turns out that abc-hits are quite rare and there are only thirty-one abc-hits
 
 Find ∑c for c < 120000"""
 
+# FAIL, takes way too long, ~1hr
+
 from math import sqrt, prod
 import benchmark as bm
 import numpy as np
 import time
+
+# todo replace with pyprimesieve
 
 def get_pfs_distinct(n):
     primfac = set({})
